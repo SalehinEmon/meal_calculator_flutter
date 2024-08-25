@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meal_calculator/provider/mess_calculator_provider.dart';
-import 'package:meal_calculator/view/home/home_view.dart';
+import 'package:meal_calculator/presentation/home/provider/mess_calculator_provider.dart';
+import 'package:meal_calculator/presentation/home/home_view.dart';
 import 'package:provider/provider.dart';
 
 class DeleteAll extends StatefulWidget {

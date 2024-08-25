@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meal_calculator/view/home/home_view.dart';
+import 'package:meal_calculator/presentation/home/home_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutView extends StatefulWidget {

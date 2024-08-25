@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meal_calculator/view/about/about.dart';
-import 'package:meal_calculator/view/delete_all/delete_all.dart';
+import 'package:meal_calculator/presentation/about/about.dart';
+import 'package:meal_calculator/presentation/delete_all/delete_all.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});

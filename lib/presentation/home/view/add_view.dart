@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:meal_calculator/model/mess_member_model.dart';
-import 'package:meal_calculator/provider/mess_calculator_provider.dart';
-import 'package:meal_calculator/view/home/components/text_field_components.dart';
+import 'package:meal_calculator/presentation/home/provider/mess_calculator_provider.dart';
+import 'package:meal_calculator/presentation/home/widgets/text_field_components.dart';
 import 'package:provider/provider.dart';
 
 class AddView extends StatefulWidget {

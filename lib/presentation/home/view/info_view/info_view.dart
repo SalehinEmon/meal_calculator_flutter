@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:meal_calculator/model/mess_member_model.dart';
-import 'package:meal_calculator/provider/mess_calculator_provider.dart';
-import 'package:meal_calculator/view/drawer/app_drawer.dart';
-import 'package:meal_calculator/view/home/components/text_field_components.dart';
-import 'package:meal_calculator/view/home/view/info_view/components/info_list_item.dart';
+import 'package:meal_calculator/presentation/home/provider/mess_calculator_provider.dart';
+import 'package:meal_calculator/presentation/drawer/app_drawer.dart';
+import 'package:meal_calculator/presentation/home/view/info_view/widgets/info_list_table.dart';
+import 'package:meal_calculator/presentation/home/widgets/text_field_components.dart';
+import 'package:meal_calculator/presentation/home/view/info_view/widgets/info_list_item.dart';
 import 'package:provider/provider.dart';
 
 class InfoPage extends StatefulWidget {
@@ -156,46 +157,29 @@ class _InfoPageState extends State<InfoPage> {
               const Divider(
                 color: Colors.lightBlueAccent,
               ),
-              Expanded(
-                child: messCalculatorProvider.waitFlag
-                    ? generateWaitingLoader()
-                    : messCalculatorProvider.length == 0
-                        ? const Text("No data found")
-                        : ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: messCalculatorProvider.length,
-                            itemBuilder: (context, index) {
-                              MessMemberModel messMember =
-                                  messCalculatorProvider.allMember[index];
-
-                              return InfoViewItem(
-                                messMember: messMember,
-                                perMealCost:
-                                    messCalculatorProvider.perMealCost(),
-                                updateWidget: IconButton(
-                                  onPressed: () {
-                                    updateDialogWindow(
-                                        context, messCalculatorProvider, index);
-                                  },
-                                  icon: const Icon(
-                                    Icons.edit,
-                                    color: Colors.lightBlueAccent,
-                                  ),
-                                ),
-                                deleteWidget: IconButton(
-                                  onPressed: () {
-                                    deleteDialog(
-                                        context, index, messCalculatorProvider);
-                                  },
-                                  icon: const Icon(
-                                    Icons.delete,
-                                    color: Colors.lightBlueAccent,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-              ),
+              messCalculatorProvider.waitFlag
+                  ? generateWaitingLoader()
+                  : messCalculatorProvider.length == 0
+                      ? const Text("No data found")
+                      : ListView(
+                          shrinkWrap: true,
+                          children: [
+                            InfoListTable(
+                              messMemberList: messCalculatorProvider.allMember,
+                              perMealCost: messCalculatorProvider.perMealCost(),
+                              updateWidget: const SizedBox(),
+                              deleteWidget: const SizedBox(),
+                              onEditPressed: (index) {
+                                updateDialogWindow(
+                                    context, messCalculatorProvider, index);
+                              },
+                              onDeletePressed: (index) {
+                                deleteDialog(
+                                    context, index, messCalculatorProvider);
+                              },
+                            ),
+                          ],
+                        ),
             ],
           ),
         );

@@ -22,13 +22,11 @@ class MessCalculatorProvider extends ChangeNotifier {
   _loadData() async {
     waitFlag = true;
     await storage.ready;
-    String memberListString = storage.getItem('member_list') ?? '';
+    String memberListString = storage.getItem('member_list') ?? '[]';
 
-    if (memberListString.isNotEmpty) {
-      _allMember = (jsonDecode(memberListString) as List)
-          .map((member) => MessMemberModel.fromJson(member))
-          .toList();
-    }
+    _allMember = (jsonDecode(memberListString) as List)
+        .map((member) => MessMemberModel.fromJson(member))
+        .toList();
 
     waitFlag = false;
     notifyListeners();
