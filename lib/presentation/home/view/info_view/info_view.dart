@@ -161,24 +161,31 @@ class _InfoPageState extends State<InfoPage> {
                   ? generateWaitingLoader()
                   : messCalculatorProvider.length == 0
                       ? const Text("No data found")
-                      : ListView(
-                          shrinkWrap: true,
-                          children: [
-                            InfoListTable(
-                              messMemberList: messCalculatorProvider.allMember,
-                              perMealCost: messCalculatorProvider.perMealCost(),
-                              updateWidget: const SizedBox(),
-                              deleteWidget: const SizedBox(),
-                              onEditPressed: (index) {
-                                updateDialogWindow(
-                                    context, messCalculatorProvider, index);
-                              },
-                              onDeletePressed: (index) {
-                                deleteDialog(
-                                    context, index, messCalculatorProvider);
-                              },
-                            ),
-                          ],
+                      : Expanded(
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              InfoListTable(
+                                messMemberList:
+                                    messCalculatorProvider.allMember,
+                                perMealCost:
+                                    messCalculatorProvider.perMealCost(),
+                                updateWidget: const SizedBox(),
+                                deleteWidget: const SizedBox(),
+                                onEditPressed: (index) {
+                                  updateDialogWindow(
+                                      context, messCalculatorProvider, index);
+                                },
+                                onDeletePressed: (index) {
+                                  deleteDialog(
+                                      context, index, messCalculatorProvider);
+                                },
+                              ),
+                              const SizedBox(
+                                height: 50,
+                              )
+                            ],
+                          ),
                         ),
             ],
           ),
